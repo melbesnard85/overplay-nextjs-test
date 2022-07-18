@@ -29,9 +29,6 @@ function App() {
   //   };
 
   const click = (e) => {
-    console.log('originalImage', originalImage)
-    console.log('originalLink', originalLink)
-    console.log('outputFileName', outputFileName)
     e.preventDefault()
 
     const options = {
@@ -48,27 +45,26 @@ function App() {
     let output
     imageCompression(originalImage, options).then((x) => {
       output = x
-
       const downloadLink = URL.createObjectURL(output)
 
       setcompressedLink(downloadLink)
+      //upload to s3 bucket
+      addPhoto(output)
     })
 
     setclicked(true)
 
-    // addPhoto()
     return 1
   }
 
-  const addPhoto = () => {
-    var file = files[0]
-    var fileName = file.name
-    var albumPhotosKey = encodeURIComponent(albumName) + '/'
+  const addPhoto = (file) => {
+    const fileName = file.name
+    const albumPhotosKey = encodeURIComponent(albumName) + '/'
 
-    var photoKey = albumPhotosKey + fileName
+    const photoKey = albumPhotosKey + fileName
 
     // Use S3 ManagedUpload class as it supports multipart uploads
-    var upload = new AWS.S3.ManagedUpload({
+    const upload = new AWS.S3.ManagedUpload({
       params: {
         Bucket: albumBucketName,
         Key: photoKey,
@@ -76,7 +72,7 @@ function App() {
       },
     })
 
-    var promise = upload.promise()
+    const promise = upload.promise()
 
     promise.then(
       function (data) {
