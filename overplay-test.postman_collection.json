@@ -6,13 +6,13 @@
 	},
 	"item": [
 		{
-			"name": "post new img",
+			"name": "Post image by JSON",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\"imgUrl\": \"eee\", \"info\": \"eee-img\", \"orgSize\": 20, \"cmpSize\": 10}\r\n    \r\n]",
+					"raw": "[\r\n    {\"cmpUrl\":\"eee-cmp-url\", \"orgUrl\": \"eee-org-url\", \"orgInfo\": {\"name\":\"eee\", \"size\":50}}\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -34,27 +34,28 @@
 			"response": []
 		},
 		{
-			"name": "get imgs by pagenumber and limit",
+			"name": "Get images by pageNumber and limit",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8001/imgs?pageNumber=1&limit=3",
+					"raw": "localhost:8001/imgs/?pageNumber=3&limit=2",
 					"host": [
 						"localhost"
 					],
 					"port": "8001",
 					"path": [
-						"imgs"
+						"imgs",
+						""
 					],
 					"query": [
 						{
 							"key": "pageNumber",
-							"value": "1"
+							"value": "3"
 						},
 						{
 							"key": "limit",
-							"value": "3"
+							"value": "2"
 						}
 					]
 				}
@@ -62,19 +63,19 @@
 			"response": []
 		},
 		{
-			"name": "get img by id",
+			"name": "Get image by id",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8001/imgs/62d5a4dc9d8551db3145b88f",
+					"raw": "localhost:8001/imgs/62d5c71279cd475bac85f90f",
 					"host": [
 						"localhost"
 					],
 					"port": "8001",
 					"path": [
 						"imgs",
-						"62d5a4dc9d8551db3145b88f"
+						"62d5c71279cd475bac85f90f"
 					]
 				}
 			},

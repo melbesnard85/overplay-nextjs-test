@@ -32,7 +32,7 @@ app.post('/imgs', (req, res) => {
 })
 
 app.get('/imgs', async (req, res) => {
-  const pageNumber = parseInt(req.query.pageNumber) || 0
+  const pageNumber = parseInt(req.query.pageNumber) || 1
   const limit = parseInt(req.query.limit) || 3
   let startIndex = (pageNumber - 1) * limit
   const imgs = await Imgs.find()
